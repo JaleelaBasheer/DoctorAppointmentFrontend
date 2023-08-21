@@ -1,0 +1,119 @@
+<!-- header -->
+<nav class="navbar navbar-expand-lg bg-info "style="width: 100%; z-index: 1000;"> 
+  <div class="container-fluid">
+    <a class="navbar-brand ms-lg-5 fw-bold fs-2"routerLink="" ><i class="fa-solid fa-square-plus "></i>MediCare</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse " id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 fw-bold">
+        <li class="nav-item">
+          <a class="nav-link active ms-lg-4 me-5" aria-current="page" routerLink="user/userprofile">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active ms-lg-4 me-5" routerLink="">Services</a>
+        </li>    
+        <li class="nav-item">
+          <a class="nav-link active ms-lg-4 me-5" routerLink="/user/doctorprofile">Find a doctor</a>
+        </li>                     
+        <li class="nav-item">
+          <a class="nav-link active ms-lg-4 me-5" routerLink="">Contact Us</a>
+        </li>
+        <img style="width: 50px; height: 50px; border-radius: 50%;" class="userimage ms-lg-4 me-5" [src]="image" alt="">        
+      </ul>
+     
+    </div>
+  </div>
+</nav>
+
+<div class="container mt-5">
+  <h1 class="text-center text-success">Edit and Update</h1>
+  <div class="row mt-5">
+
+   <div class="col-6">
+    <form class="border p-3 rounded" [formGroup]="editForm"  >
+      <div class="d-flex justify-content-between">
+        <h3>Patient Register</h3> 
+      </div>
+      
+                    <!-- Name -->
+                    <div class="form-floating mb-3">
+                        <input type="text" formControlName="username"  name="username" class="form-control" id="floatingInputname"
+                            placeholder="Name">
+                        <label for="floatingInputname">Name</label>
+                    </div>
+                   
+
+                    <!-- Mobile Number -->
+                   
+                    <div class="form-floating mb-3">
+                        <input type="text" formControlName="number"  name="number" class="form-control" id="floatingInputnumber"
+                            placeholder="Number">
+                        <label for="floatingInputnumber">Mobile Number</label>
+                    </div>
+                   
+
+
+                    <!-- Password -->
+                    <div class="form-floating mb-3 ">
+                        <input type="text" formControlName="password" class="form-control" id="floatingPassword"
+                            placeholder="Password" name="password">
+                        <label for="floatingPassword">Create Password</label>
+                    </div> 
+                   
+                  <!-- Email -->
+                  <div class="form-floating mb-3 ">
+                    <input type="email" formControlName="email" class="form-control" id="floatingemail"
+                        placeholder="Email" name="email">
+                    <label for="floatingemail">Email</label>
+                </div> 
+                
+              
+                
+              
+              <!-- image -->
+              <div class="form-floating mb-3 ">
+                <input type="text" formControlName="image" class="form-control" id="floatingimage"
+                    placeholder="Image" name="image">
+                <label for="floatingimage">Image</label>
+            </div> 
+          
+          <!-- address -->
+          <div class="form-floating mb-3 ">
+            <input type="text" formControlName="address" class="form-control" id="floatingaddress"
+                placeholder="Address" name="address">
+            <label for="floatingaddress">Address</label>
+        </div>
+       
+        <!-- Place -->
+        <div class="form-floating mb-3 ">
+          <input type="text" formControlName="place" class="form-control" id="floatingplace"
+              placeholder="Place" name="place">
+          <label for="floatingplace">Place</label>
+      </div>
+     
+
+       <!-- checkbox -->
+                   <div class="mt-3">
+                      <input _ngcontent-dlf-c70="" type="checkbox" required="" name="checkbox" value="check" id="agree" formControlName="checkbox">I agree to these <a routerLink=""><span class="text-danger">terms of use and privacy policy</span></a>
+                    </div>
+                     
+                    <div class="text-center mt-3" style="width: 90%;">
+                      <button (click)="Update()" type="button" class="btn btn-success"style="width: 40%;">Update </button>
+                    </div>
+                    
+                                              
+    </form>
+
+
+   </div>
+
+   <div class="col-6 text-center">
+    <img style="width: 150px; height: 150px;" [src]="editForm.value.image"alt="">
+   </div>
+  </div>
+    
+</div>
+
+<app-footer></app-footer>
+

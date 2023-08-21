@@ -1,0 +1,50 @@
+
+<section style="height: 100vh;">
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col-4"></div>
+            <div class="col-4 mt-5">
+                <form class="border p-3 rounded" (ngSubmit)="login()" [formGroup]="loginForm">
+                    <div class="d-flex justify-content-between">
+                        <h3>Login MediCare Admin</h3> 
+                      
+                      </div>
+                    <!-- Mobile -->
+                    <div class="form-floating mb-3">
+                        <input type="text" formControlName="loginnumber"  name="loginnumber" class="form-control" id="floatingInputnumber"
+                            placeholder="Email">
+                        <label for="floatingInputnumber">Mobile Number</label>
+                    </div>
+                    <!--mobile validation -->
+                    <div *ngIf="this.loginForm.get('loginnumber')?.touched&&this.loginForm.get('loginnumber')?.errors" class="mb-2 text-danger">
+                        invalid number
+                    </div>
+
+
+                    <!-- Password -->
+                    <div class="form-floating ">
+                        <input type="password" formControlName="pswd" class="form-control" id="floatingPassword"
+                            placeholder="Password" name="pswd">
+                        <label for="floatingPassword">Password</label>
+                    </div> 
+                         <!-- Password validation -->
+                    <div *ngIf="this.loginForm.get('pswd')?.touched&&this.loginForm.get('pswd')?.errors" class="mb-2 text-danger">
+                        invalid Password
+                    </div>            
+                   
+                    <div class="text-center mt-4" style="width: 90%;">
+                        <button type="submit" class="btn btn-danger"style="width: 90%;">Login
+                            <div *ngIf="isLogined" class="spinner-border ms-2 text-light" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                              </div></button>
+                        
+
+                    </div>
+                    
+                </form>
+            </div>
+            <div class="col-4"></div>
+
+        </div>
+    </div>
+</section>

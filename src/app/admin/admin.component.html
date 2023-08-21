@@ -1,0 +1,381 @@
+<div class="sidebar" >
+    <div class="logo-details">
+        <i class="bx bx-plus"></i>
+      <span class="logo_name">MediCare</span>
+    </div>
+    <ul class="nav-links">
+      <li>
+        <a href="dashboard" class="active">
+          <i class="bx bx-grid-alt"></i>
+          <span id="dashboard" class="links_name">Dashboard</span>
+        </a>
+      </li>
+      <li>
+        <a  href="#">
+          <i class="bx bx-message"></i>
+          <span class="links_name ">Appointments <span class="badge fw-bolder fs-5 text-danger">{{count}}</span>
+        </span>
+        </a>
+      </li>                    
+      <li>
+        <a href="#">
+          <i class="bx bx-message"></i>
+          <span class="links_name">Patients</span>
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <i class="bx bx-heart"></i>
+          <span class="links_name">Doctors</span>
+        </a>
+      </li>
+      <li>
+        <a routerLink="/user/doctorregister">
+          <i class="bx bx-heart"></i>
+          <span class="links_name">Add Doctor</span>
+        </a>
+      </li>
+      
+      <li>
+        <a href="#">
+          <i class="bx bx-cog"></i>
+          <span class="links_name">Setting</span>
+        </a>
+      </li>
+      <li (click)="logout()" class="log_out">
+        <a href="#">
+          <i class="bx bx-log-out"></i>
+          <span class="links_name">Log out</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <section class="home-section">
+    <nav>
+      <div class="sidebar-button">
+        <i class="bx bx-menu sidebarBtn"></i>
+        <span class="dashboard">Dashboard</span>
+      </div>
+      <div class="search-box">
+        <input [(ngModel)]="searchKey" type="text" placeholder="Search..." />
+        <i class="bx bx-search"></i>
+      </div>
+      <div class="profile-details">
+        <img [src]="image" alt="" />
+        <span class="admin_name">{{user}}</span>
+        
+      </div>
+    </nav>
+
+    <div class="home-content">
+      <div class="overview-boxes">
+        <div class="box" style="background-color: rgb(203, 236, 36);">
+          <div class="right-side">
+            <div class="box-topic">Total Patients</div>
+            <div class="number">{{patientcount}}</div>
+            
+          </div>
+          <!-- <i class="bx bx-cart-alt cart"></i> -->
+        </div>
+        <div class="box " style="background-color: rgb(87, 243, 87);">
+          <div class="right-side">
+            <div class="box-topic">Total Doctors</div>
+            <div  class="number">{{doctorcount}}</div>
+            
+          </div>
+          <!-- <i class="bx bxs-cart-add cart two"></i> -->
+        </div>
+        <div class="box"style="background-color: orange;">
+          <div class="right-side">
+            <div class="box-topic" >Total Appointments</div>
+            <div class="number">{{count}}</div>
+            
+          </div>
+          <!-- <i class="bx bx-cart cart three"></i> -->
+        </div>
+        
+      </div>
+
+      <div class="sales-boxes">
+        <div class="recent-sales box">
+          <div class="title fw-bolder" id="appointments"> Appointment Requests </div>
+          <div class="sales-details">
+            <table class="table table-dark table-striped mt-5">
+                <thead >
+                    <tr>
+                        <th scope="col">No</th>
+                        <th scope="col">Appointment id</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Number</th>
+                        <th scope="col">Doctor name</th>
+                        <th scope="col">Appointment date</th>
+                        <th scope="col">Appointment time</th>
+                        <th scope="col">Accept</th>
+                        <th scope="col">Reject</th>
+                    </tr>
+                </thead>
+                <tbody  *ngFor="let item of allappointments  let i=index">
+                    <tr>
+                        <th scope="row">{{i+1}}</th>
+                        <td>{{item._id}}</td>
+                        <td >{{item.username}}</td>
+                        <td>{{item.number}}</td>
+                        <td>{{item.doctorname}}</td>
+                        <td>{{item.appointmentdate}}</td>
+                        <td>{{item.appointmenttime}}</td>
+                        
+                        <td><i data-bs-toggle="modal" data-bs-target="#staticBackdrop"   style="cursor: pointer;" class="bx bx-check"></i></td>
+                      <td><i data-bs-toggle="modal" data-bs-target="#staticBackdropreject"  style="cursor: pointer;" class="bx bx-trash"></i></td>
+                </tr>                    
+                </tbody>
+            </table>
+          </div>
+          
+        </div>
+       
+      </div>
+    </div>
+    <div class="top-sales box">
+      <h3 class="title fw-bolder mt-5">List of doctors</h3>
+      
+        <table  class="table table-light  table-striped mt-3">
+            <thead >
+                <tr>
+                     <th scope="col">No:</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Department</th>
+                    <th scope="col">Specilization</th>
+
+                </tr>
+            </thead>
+            <tbody *ngFor="let item of alldoctors  | searchpipe:searchKey:'username'  let i=index">
+                <tr>
+                    <th scope="row">{{i+1}}</th>
+                    <td >{{item.username}}</td>
+                    <td>{{item.department}}</td>
+                    <td>{{item.specilization}}</td>
+
+                    
+                </tr>
+            </tbody>
+        </table>                   
+    </div>
+    <div class="sales-boxes">
+      <div class="recent-sales box">
+        <div class="title mt-5 fw-bolder">List of patients </div>
+        <div class="sales-details">
+          <table class="table table-dark table-striped mt-5">
+              <thead >
+                  <tr>
+                      <th scope="col">No</th>
+                      <th scope="col">Name</th>
+                      <th scope="col">Number</th>
+                      <th scope="col">Address</th>
+                      <th scope="col">Place</th>
+                      <th scope="col">image</th>
+                      <th scope="col">patientid</th>
+
+
+                  </tr>
+              </thead>
+              <tbody *ngFor="let item of allpatients  let i=index">
+                  <tr>
+                      <th scope="row">{{i+1}}</th>
+                      <td >{{item.username}}</td>
+                      <td>{{item.number}}</td>
+                      <td>{{item.address}}</td>
+                      <td>{{item.place}}</td>
+                      <td>{{item.password}}</td>
+                      <td>{{item._id}}</td>
+
+                  </tr>
+              </tbody>
+          </table>
+        </div>
+        
+      </div>
+    </div>
+    <div class="sales-boxes">
+    <div class="top-sales box">
+      <div class="d-flex justify-content-between mt-5">
+        <div class="title fw-bolder ">List of Appointments accepted</div>
+          <div class="search-box">
+            <input class="form-control" [(ngModel)]="searchKeyy" type="text" placeholder="Search..." />
+           
+          </div>
+          
+          
+        
+        
+      </div>
+      
+        <table  class="table table-warning  table-striped mt-3 me-2 ">
+            <thead >
+                <tr>
+                     <th scope="col">No:</th>
+                     <th scope="col">Appointment id</th>                     
+                    <th scope="col">Name</th>
+                    <th scope="col">Doctor</th>
+                    <th scope="col">Appointment Date</th>
+                    <th scope="col">Appointment time</th>
+
+                </tr>
+            </thead>
+            <tbody *ngFor="let item of allacceptappointments let i= index" >
+                <tr *ngFor="let product of item.acceptappointmentpersons  | pipes:searchKeyy ">
+                    <th scope="row">{{i+1}}</th>
+                    <td >{{product._id}}</td>
+                    <td>{{product.username}}</td>
+                    <td>{{product.doctorname}}</td>
+                    <td>{{product.appointmentdate}}</td>
+                    <td>{{product.appointmenttime}}</td>
+                    <!--  -->
+               </tr>
+            </tbody>
+        </table>                   
+    </div>
+  </div>
+     <div class="sales-boxes">
+
+    <div class="top-sales box">
+      <div class="title mt-5 fw-bolder">List of Appointments rejected</div>
+      
+        <table  class="table table-danger  table-striped mt-3 ">
+            <thead >
+                <tr>
+                     <th scope="col">No:</th>
+                     <th scope="col">Appointment id</th>                     
+                    <th scope="col">Name</th>
+                    <th scope="col">Doctor</th>
+                    <th scope="col">Appointment Date</th>
+                    <th scope="col">Appointment time</th>
+
+                </tr>
+            </thead>
+            <tbody *ngFor="let item of allrejectappointments let i= index" >
+                <tr *ngFor="let product of item.rejectappointmentpersons">
+                    <th scope="row">{{i+1}}</th>
+                    <td >{{product._id}}</td>
+                    <td>{{product.username}}</td>
+                    <td>{{product.doctorname}}</td>
+                    <td>{{product.appointmentdate}}</td>
+                    <td>{{product.appointmenttime}}</td>
+               </tr>
+            </tbody>
+        </table>                   
+    </div>
+  </div>
+    
+  </section>
+
+  <!-- accept modal -->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Accept Appointments</h1>
+          <button type="button" (click)="resetform()" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          
+          <form class="border p-3 rounded" [formGroup]=" acceptappointmentForm" (ngSubmit)="  buttonclickaccept()" >   
+            
+            <!-- appointment id -->
+            <div class="form-floating mb-3">
+              <input type="text" name="appointmentid" formControlName="appointmentid" class="form-control" id="floatingInputappointmentid"
+                  placeholder="Appointment id">
+              <label for="appointmentid">Appointment id</label>
+              
+          </div>
+         
+        <!-- Number -->
+        <div class="form-floating mb-3">
+          <input type="text" name="number" formControlName="number" class="form-control" id="floatingInputnumber"
+              placeholder="Number">
+          <label for="floatingInputudate">Number</label>
+      </div>
+      
+    
+    
+                      <!-- appointment Date -->
+                      <div class="form-floating mb-3">
+                          <input type="text" formControlName="udate"  name="udate" class="form-control" id="floatingInputudate"
+                              placeholder="Appointment Date">
+                          <label for="floatingInputudate">Appointment Date</label>
+                      </div>
+                      
+                      <!-- Appointment Time -->
+                      <div class="form-floating mb-3">
+                        <input type="text" formControlName="utime"  name="utime" class="form-control" id="floatingInpututime"
+                            placeholder="Appointment Time">
+                        <label for="floatingInpututime">Appointment Time</label>
+                    </div>
+                    
+                  <div class="modal-footer">
+                    <button (click)="resetform()" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Confirm Appointment</button>
+                  </div>
+                    
+                      </form>       
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <!-- reject modal -->
+  <div class="modal fade" id="staticBackdropreject" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Reject Appointments</h1>
+          <button type="button" (click)="resetform()" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          
+          <form class="border p-3 rounded" [formGroup]="acceptappointmentForm" (ngSubmit)="  buttonclickreject()" >   
+            
+            <!-- appointment id -->
+            <div class="form-floating mb-3">
+              <input type="text" name="appointmentid" formControlName="appointmentid" class="form-control" id="floatingInputappointmentid"
+                  placeholder="Appointment id">
+              <label for="appointmentid">Appointment id</label>
+              
+          </div>
+         
+        <!-- Number -->
+        <div class="form-floating mb-3">
+          <input type="text" name="number" formControlName="number" class="form-control" id="floatingInputnumber"
+              placeholder="Number">
+          <label for="floatingInputudate">Number</label>
+      </div>
+      
+    
+    
+                      <!-- appointment Date -->
+                      <div class="form-floating mb-3">
+                          <input type="text" formControlName="udate"  name="udate" class="form-control" id="floatingInputudate"
+                              placeholder="Appointment Date">
+                          <label for="floatingInputudate">Appointment Date</label>
+                      </div>
+                      
+                      <!-- Appointment Time -->
+                      <div class="form-floating mb-3">
+                        <input type="text" formControlName="utime"  name="utime" class="form-control" id="floatingInpututime"
+                            placeholder="Appointment Time">
+                        <label for="floatingInpututime">Appointment Time</label>
+                    </div>
+                    
+                  <div class="modal-footer">
+                    <button (click)="resetform()" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Reject Appointment</button>
+                  </div>
+                    
+                      </form>       
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+

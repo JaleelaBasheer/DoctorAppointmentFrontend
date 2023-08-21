@@ -1,0 +1,48 @@
+<!-- header -->
+<nav class="navbar navbar-expand-lg bg-info "style="width: 100%; z-index: 1000;"> 
+  <div class="container-fluid">
+    <a class="navbar-brand ms-lg-5 fw-bold fs-2"routerLink="" ><i class="fa-solid fa-square-plus "></i>MediCare</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse " id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 fw-bold">
+        <li class="nav-item">
+          <a class="nav-link active ms-lg-4 me-5" aria-current="page" routerLink="/user/userprofile">Home</a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link active ms-lg-4 me-5" >Contact Us</a>
+        </li>
+        <li class="nav-item">
+          <input [(ngModel)]="searchKey" class=" search ms-lg-4 me-5" type="text" placeholder="Search by specilization">
+        </li>
+          <button (click)="logout()" class="btn btn-danger" style="width: 200px;">Log Out</button> 
+        
+             
+      </ul>
+     
+    </div>
+  </div>
+</nav>
+
+<section>
+    <div class="container mt-5">
+        <div class="row">
+          <div class="col mb-5 ms-2" *ngFor="let item of alldoctors | searchpipe:searchKey:'specilization'">
+            <div class="card" style="width: 18rem;">
+              <img [src]="item.image" class="card-img" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Dr. {{item.username}}</h5>
+                <p class="card-text">{{item.department}}</p>
+                <a routerLink="/user/viewdoctorprofile/{{item.id}}" class="btn btn-primary">View Profile</a>
+              </div>
+            </div>
+
+          </div>
+            
+        </div>
+    </div>
+</section>
+
+<app-footer></app-footer>

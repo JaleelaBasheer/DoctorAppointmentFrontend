@@ -1,0 +1,52 @@
+
+.row img{
+    border-radius: 15px;
+}
+.card-img{
+    height: 210px;
+}
+.arrow{
+    width: 40px;
+    height: 40px;
+    border: solid;
+    border-radius: 50%;
+    /* border-width: 1px; */
+    /* text-align: center; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 40%;
+}
+.arrow1{
+    width: 40px;
+    height: 40px;
+    border: solid;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.image img{
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+}
+.carousel-outer{
+    width: 20px;
+    height: 50px;
+}
+
+.carousel-indicators button{
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: solid;
+   border-color: rgb(6, 98, 179);
+   background-color:rgb(6, 98, 179);
+}
+.carousel-indicators .active {
+    width: 22px;
+    height: 8px;
+    border-radius: 10px;
+    background-color: rgb(6, 98, 179);
+}

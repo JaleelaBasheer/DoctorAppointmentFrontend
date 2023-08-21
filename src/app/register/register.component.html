@@ -1,0 +1,128 @@
+<app-header></app-header>
+
+
+<div class="container mt-5">
+  <div class="row mt-5">
+
+   <div class="col-6">
+    <form class="border p-3 rounded" [formGroup]="registerForm" (ngSubmit)="register()" >
+      <div class="d-flex justify-content-between">
+        <h3>Patient Register</h3> 
+      <p><a routerLink="/user/doctorregister" class="text-danger">Are you a doctor</a></p>
+      </div>
+      
+                    <!-- Name -->
+                    <div class="form-floating mb-3">
+                        <input type="text" formControlName="username"  name="username" class="form-control" id="floatingInputname"
+                            placeholder="Name">
+                        <label for="floatingInputname">Name</label>
+                    </div>
+                    <!-- username validation -->
+                    <div *ngIf="this.registerForm.get('username')?.touched&&this.registerForm.get('username')?.errors" class="mb-2 text-danger">
+                      invalid username
+                  </div>
+
+                    <!-- Mobile Number -->
+                   
+                    <div class="form-floating mb-3">
+                        <input type="text" formControlName="number"  name="number" class="form-control" id="floatingInputnumber"
+                            placeholder="Number">
+                        <label for="floatingInputnumber">Mobile Number</label>
+                    </div>
+                    <!--mobile validation -->
+                    <div *ngIf="this.registerForm.get('number')?.touched&&this.registerForm.get('number')?.errors" class="mb-2 text-danger">
+                      invalid number
+                  </div>
+
+
+                    <!-- Password -->
+                    <div class="form-floating mb-3 ">
+                        <input type="password" formControlName="password" class="form-control" id="floatingPassword"
+                            placeholder="Password" name="password">
+                        <label for="floatingPassword">Create Password</label>
+                    </div> 
+                    <!-- Password validation -->
+                    <div *ngIf="this.registerForm.get('password')?.touched&&this.registerForm.get('password')?.errors" class="mb-2 text-danger">
+                      invalid Password
+                  </div> 
+                  <!-- Email -->
+                  <div class="form-floating mb-3 ">
+                    <input type="email" formControlName="email" class="form-control" id="floatingemail"
+                        placeholder="Email" name="email">
+                    <label for="floatingemail">Email</label>
+                </div> 
+                <!-- email validation -->
+                <div *ngIf="this.registerForm.get('email')?.touched&&this.registerForm.get('email')?.errors" class="mb-2 text-danger">
+                  invalid email
+              </div> 
+                <!-- Blood Group -->
+                <div class="form-floating mb-3">
+                  <input type="text" formControlName="bloodgroup" class="form-control" id="floatingbloodgroup"
+                      placeholder="Bloodgroup" name="bloodgroup">
+                  <label for="floatingbloodgroup">Bloodgroup</label>
+              </div> 
+              <!--  bloodgroup validation -->
+              <div *ngIf="this.registerForm.get('bloodgroup')?.touched&&this.registerForm.get('bloodgroup')?.errors" class="mb-2 text-danger">
+                invalid bloodgroup
+            </div>
+              <!-- image -->
+              <div class="form-floating mb-3 ">
+                <input type="text" formControlName="image" class="form-control" id="floatingimage"
+                    placeholder="Image" name="image">
+                <label for="floatingimage">Image</label>
+            </div> 
+            <!--  image validation -->
+            <div *ngIf="this.registerForm.get('image')?.touched&&this.registerForm.get('image')?.errors" class="mb-2 text-danger">
+              invalid image
+          </div>
+          <!-- address -->
+          <div class="form-floating mb-3 ">
+            <input type="text" formControlName="address" class="form-control" id="floatingaddress"
+                placeholder="Address" name="address">
+            <label for="floatingaddress">Address</label>
+        </div>
+         <!--  address validation -->
+         <div *ngIf="this.registerForm.get('address')?.touched&&this.registerForm.get('address')?.errors" class="mb-2 text-danger">
+          invalid Address
+      </div>
+        <!-- Place -->
+        <div class="form-floating mb-3 ">
+          <input type="text" formControlName="place" class="form-control" id="floatingplace"
+              placeholder="Place" name="place">
+          <label for="floatingplace">Place</label>
+      </div>
+      <!--  place validation -->
+      <div *ngIf="this.registerForm.get('place')?.touched&&this.registerForm.get('place')?.errors" class="mb-2 text-danger">
+        invalid Place
+    </div>
+
+       <!-- checkbox -->
+                   <div class="mt-3">
+                      <input _ngcontent-dlf-c70="" type="checkbox" required="" name="checkbox" value="check" id="agree" formControlName="checkbox">I agree to these <a routerLink=""><span class="text-danger">terms of use and privacy policy</span></a>
+                    </div>
+                    <!-- checkbox validation -->
+                    <div *ngIf="this.registerForm.get('checkbox')?.touched&&this.registerForm.get('checkbox')?.errors" class="mb-2 text-danger">
+                      Please tick checkbox
+                  </div> 
+
+                    <p class="mt-3 text-end" ><a routerLink="/user/login">Already have account?</a></p>
+
+                    <div class="text-center mt-3" style="width: 90%;">
+                      <button type="submit" class="btn btn-danger"style="width: 90%;">Sign Up </button>
+                    </div>
+                    
+                                              
+    </form>
+
+
+   </div>
+
+   <div class="col-6 text-center">
+    <img class="img-top" src="../../assets/images/login image.jpg" alt="">
+    <img *ngIf="registerForm.value.image" width="200px" height="200px" [src]="registerForm.value.image" alt="">
+   </div>
+  </div>
+    
+</div>
+
+<app-footer></app-footer>
